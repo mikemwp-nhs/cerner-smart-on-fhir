@@ -24,9 +24,6 @@
 
         $.when(pt, obv).fail(onError);
 
-        console.log('MP Data:', pt.gender);
-        console.log('MP Data:', pt.name[0]);
-
         $.when(pt, obv).done(function(patient, obv) {
           var byCodes = smart.byCodes(obv, 'code');
           var gender = patient.gender;
@@ -45,12 +42,17 @@
           var hdl = byCodes('2085-9');
           var ldl = byCodes('2089-1');
 
+          console.log('MP Data 1:', patient.gender);
+          console.log('MP Data 2:', patient.name[0]);
+          
           var p = defaultPatient();
           p.birthdate = patient.birthDate;
           p.gender = gender;
           p.fname = fname;
           p.lname = lname;
           p.height = getQuantityValueAndUnit(height[0]);
+
+          console.log('MP Data 2:', p.fname);
 
           if (typeof systolicbp != 'undefined')  {
             p.systolicbp = systolicbp;
